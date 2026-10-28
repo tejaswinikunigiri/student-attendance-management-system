@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Search Attendance by Date{% endblock %}
+{% block content %}
+<section class="panel">
+  <h2>Search Attendance by Date</h2>
+  <form method="get">
+    <label>Select date<input type="date" name="attendance_date" value="{{ selected_date }}" required></label>
+    <button type="submit">Search</button>
+  </form>
+  {% if selected_date %}
+    <h3>Results for {{ selected_date }}</h3>
+    {% if attendance_records %}
+    <div class="table-wrap"><table><thead><tr><th>Name</th><th>Roll Number</th><th>Date</th><th>Status</th></tr></thead>
+    <tbody>{% for record in attendance_records %}<tr><td>{{ record.name }}</td><td>{{ record.roll_number }}</td><td>{{ record.date }}</td><td>{{ record.status }}</td></tr>{% endfor %}</tbody></table></div>
+    {% else %}<p class="muted">No attendance records found for this date.</p>{% endif %}
+  {% endif %}
+</section>
+{% endblock %}

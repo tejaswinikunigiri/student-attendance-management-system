@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Register Student{% endblock %}
+{% block content %}
+<section class="panel">
+  <h2>Student Registration</h2>
+  <form method="post">
+    <label>Student Name *<input name="name" required></label>
+    <label>Roll Number *<input name="roll_number" required></label>
+    <label>Branch / Department<input name="branch" placeholder="e.g. CSE"></label>
+    <label>Email<input name="email" type="email" placeholder="student@example.com"></label>
+    <button type="submit">Register Student</button>
+  </form>
+</section>
+<section class="panel" style="margin-top:20px">
+  <h2>Registered Students</h2>
+  {% if students %}
+  <div class="table-wrap"><table><thead><tr><th>Name</th><th>Roll Number</th><th>Branch</th><th>Email</th></tr></thead>
+  <tbody>{% for student in students %}<tr><td>{{ student.name }}</td><td>{{ student.roll_number }}</td><td>{{ student.branch or "-" }}</td><td>{{ student.email or "-" }}</td></tr>{% endfor %}</tbody></table></div>
+  {% else %}<p class="muted">No students registered yet.</p>{% endif %}
+</section>
+{% endblock %}

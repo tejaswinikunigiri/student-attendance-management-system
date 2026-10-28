@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Attendance Management System</title>
+</head>
+<body>
+    <h1>Student Attendance Management System</h1>
+
+    <nav>
+        <a href="/">Dashboard</a> |
+        <a href="/register">Register Student</a> |
+        <a href="/attendance">Mark Attendance</a> |
+        <a href="/records">Attendance Records</a> |
+        <a href="/student-report">Student Report</a> |
+        <a href="/search-attendance">Search by Date</a> |
+        <a href="/export-attendance">Export Excel</a>
+    </nav>
+
+    <hr>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</body>
+</html>

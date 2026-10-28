@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Mark Attendance{% endblock %}
+{% block content %}
+<section class="panel">
+  <h2>Mark Attendance</h2>
+  {% if students %}
+  <form method="post">
+    <label>Student *
+      <select name="student_id" required>
+        <option value="">-- Select student --</option>
+        {% for student in students %}
+        <option value="{{ student.id }}">{{ student.name }} ({{ student.roll_number }})</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Date *<input type="date" name="attendance_date" value="{{ today }}" required></label>
+    <label>Status *
+      <select name="status" required>
+        <option value="">-- Select status --</option>
+        <option value="Present">Present</option>
+        <option value="Absent">Absent</option>
+      </select>
+    </label>
+    <button type="submit">Save Attendance</button>
+  </form>
+  {% else %}
+  <p>No students found. Please <a href="{{ url_for('register') }}">register a student</a> first.</p>
+  {% endif %}
+</section>
+{% endblock %}

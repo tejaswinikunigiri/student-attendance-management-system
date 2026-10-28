@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Student-wise Report{% endblock %}
+{% block content %}
+<section class="panel">
+  <h2>Student-wise Attendance Report</h2>
+  <div class="table-wrap"><table><thead><tr><th>Name</th><th>Roll Number</th><th>Marked Days</th><th>Present</th><th>Absent</th><th>Attendance %</th></tr></thead>
+  <tbody>{% for item in report %}<tr><td>{{ item.name }}</td><td>{{ item.roll_number }}</td><td>{{ item.total_days }}</td><td>{{ item.present_days }}</td><td>{{ item.absent_days }}</td><td>{{ item.percentage }}%</td></tr>{% else %}<tr><td colspan="6">No students registered yet.</td></tr>{% endfor %}</tbody></table></div>
+  <p class="muted">Percentage = Present days ÷ marked days × 100.</p>
+</section>
+{% endblock %}

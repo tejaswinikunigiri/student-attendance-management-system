@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Attendance Records{% endblock %}
+{% block content %}
+<section class="panel">
+  <h2>Attendance Records</h2>
+  <p><a class="button" href="{{ url_for('export_attendance') }}">Download Excel</a></p>
+  {% if attendance_records %}
+  <div class="table-wrap"><table><thead><tr><th>Student Name</th><th>Roll Number</th><th>Date</th><th>Status</th></tr></thead>
+  <tbody>{% for record in attendance_records %}<tr><td>{{ record.name }}</td><td>{{ record.roll_number }}</td><td>{{ record.date }}</td><td>{{ record.status }}</td></tr>{% endfor %}</tbody></table></div>
+  {% else %}<p class="muted">No attendance records found.</p>{% endif %}
+</section>
+{% endblock %}

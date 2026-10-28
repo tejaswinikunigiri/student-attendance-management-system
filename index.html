@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | Student Attendance Management System{% endblock %}
+{% block content %}
+<h2>Dashboard</h2>
+<p class="muted">Overview for {{ today if today else "today" }}.</p>
+<section class="cards">
+  <div class="card"><h3>Total Students</h3><div class="number">{{ total_students }}</div></div>
+  <div class="card"><h3>Present Today</h3><div class="number">{{ present_today }}</div></div>
+  <div class="card"><h3>Absent Today</h3><div class="number">{{ absent_today }}</div></div>
+  <div class="card"><h3>Attendance % (marked today)</h3><div class="number">{{ attendance_percentage }}%</div></div>
+</section>
+<section class="panel">
+  <h2>Registered Students</h2>
+  <p><a class="button" href="{{ url_for('register') }}">+ Register Student</a> <a class="button" href="{{ url_for('attendance') }}">Mark Attendance</a></p>
+  {% if students %}
+  <div class="table-wrap"><table>
+    <thead><tr><th>Name</th><th>Roll Number</th><th>Branch</th><th>Email</th></tr></thead>
+    <tbody>{% for student in students %}
+      <tr><td>{{ student.name }}</td><td>{{ student.roll_number }}</td><td>{{ student.branch or "-" }}</td><td>{{ student.email or "-" }}</td></tr>
+    {% endfor %}</tbody>
+  </table></div>
+  {% else %}<p class="muted">No students registered yet. Start by registering a student.</p>{% endif %}
+</section>
+{% endblock %}

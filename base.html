@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Student Attendance Management System{% endblock %}</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f4f7fb; color: #202938; }
+    header { background: #174ea6; color: white; padding: 20px 5%; }
+    header h1 { margin: 0 0 12px; font-size: 24px; }
+    nav { display: flex; flex-wrap: wrap; gap: 10px; }
+    nav a { color: white; text-decoration: none; padding: 8px 11px; border-radius: 6px; background: #2864bb; }
+    nav a:hover { background: #0d3b82; }
+    main { width: min(1100px, 92%); margin: 25px auto; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 24px; }
+    .card, .panel { background: white; padding: 18px; border-radius: 10px; box-shadow: 0 2px 10px #17255412; }
+    .card h3 { margin: 0 0 10px; font-size: 15px; color: #526176; }
+    .number { font-size: 28px; font-weight: bold; color: #174ea6; }
+    h2 { margin-top: 0; }
+    form { display: grid; gap: 12px; max-width: 520px; }
+    label { font-weight: bold; font-size: 14px; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #ccd4df; border-radius: 6px; margin-top: 5px; }
+    button, .button { display: inline-block; background: #174ea6; color: white; padding: 10px 14px; border: 0; border-radius: 6px; cursor: pointer; text-decoration: none; }
+    button:hover, .button:hover { background: #0d3b82; }
+    table { width: 100%; border-collapse: collapse; background: white; margin-top: 15px; }
+    th, td { text-align: left; padding: 11px; border-bottom: 1px solid #e4e9f0; }
+    th { background: #eaf1fb; }
+    .table-wrap { overflow-x: auto; }
+    .flash { padding: 11px 14px; border-radius: 6px; margin-bottom: 12px; }
+    .success { background: #e1f7e9; color: #176333; }
+    .error { background: #fde8e8; color: #9e2424; }
+    .muted { color: #667085; }
+    footer { text-align: center; color: #667085; padding: 25px; font-size: 13px; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Student Attendance Management System</h1>
+  <nav>
+    <a href="{{ url_for('index') }}">Dashboard</a>
+    <a href="{{ url_for('register') }}">Register Student</a>
+    <a href="{{ url_for('attendance') }}">Mark Attendance</a>
+    <a href="{{ url_for('records') }}">Attendance Records</a>
+    <a href="{{ url_for('student_report') }}">Student Report</a>
+    <a href="{{ url_for('search_attendance') }}">Search by Date</a>
+    <a href="{{ url_for('export_attendance') }}">Export Excel</a>
+  </nav>
+</header>
+<main>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer>Student Attendance Management System · Python Flask · SQLite</footer>
+</body>
+</html>
